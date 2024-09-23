@@ -27,6 +27,7 @@ resource "aws_instance" "blog" {
   tags = {
     Name = "HelloWorld"
   }
+}
 
 module "blog_sg" {
   source  = "terraform-aws-modules/security-group/aws"
