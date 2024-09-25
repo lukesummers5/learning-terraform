@@ -49,6 +49,12 @@ module "autoscaling" {
   instance_type = var.instance_type
 }
 
+# Create a new ALB Target Group attachment
+resource "aws_autoscaling_attachment" "example" {
+  autoscaling_group_name = module.autoscaling.autoscaling_group_name
+  lb_target_group_arn    = module.blog_alb.arn
+}
+
 module "blog_alb" {
   source = "terraform-aws-modules/alb/aws"
   name = "blog-alb"
@@ -65,7 +71,6 @@ module "blog_alb" {
       protocol = "HTTP"
       port = 80
       target_type = "instance"
-      target_id = module.autoscaling.autoscaling_group_target_group_arns
     }
   }
 
