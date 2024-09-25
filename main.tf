@@ -70,7 +70,7 @@ module "blog_alb" {
       port = 80
       protocol = "HTTP"
 
-      default_action {
+      default_action = {
         type = "forward"
         target_group_key = "my_target"
       }
