@@ -69,7 +69,11 @@ module "blog_alb" {
     http-listener = {
       port = 80
       protocol = "HTTP"
-      target_group_key = "my_target"
+
+      default_action {
+        type = "forward"
+        target_group_key = "my_target"
+      }
     }
   }
 
